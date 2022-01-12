@@ -1,0 +1,112 @@
+
+create table employee(
+employee_id int PRIMARY KEY AUTO_INCREMENT,
+employee_name VARCHAR(30) NOT NULL,
+employee_sal FLOAT(9,2),
+dept_num INT);
+
+insert into employee(employee_name,employee_sal,dept_num)values('Vishnu',50000,1001);
+
+insert into employee(employee_name,employee_sal,dept_num)values('Shirisha',45000,1002);
+
+insert into employee(employee_name,employee_sal,dept_num)values('Pavan kumar',40000,1003);
+
+insert into employee(employee_name,employee_sal,dept_num)values('Kavitha',50000,1004);
+
+insert into employee(employee_name,employee_sal,dept_num)values('Bharath',40000,1005);
+
+create table login(
+employee_id int PRIMARY KEY,FOREIGN KEY(employee_id)REFERENCES employee(employee_id),
+password VARCHAR(20)NOT NULL,
+role VARCHAR(20) NOT NULL);
+
+insert into login(employee_id,password,role)values(1,'vishnu@123','CEO');
+
+insert into login(employee_id,password,role)values(2,'Shirisha@123','Manager');
+
+insert into login(employee_id,password,role)values(3,'Pavan@123','Asst Manager');
+
+insert into login(employee_id,password,role)values(4,'Kavitha@123','HR');
+
+insert into login(employee_id,password,role)values(5,'Bharath@123','clerk');
+
+
+create table ticket1(
+ticket_id INT PRIMARY KEY AUTO_INCREMENT,
+raisedby_employee_id int,FOREIGN KEY(raisedby_employee_id) REFERENCES employee(employee_id),
+type_of_issue VARCHAR(50) NOT NULL,
+raised_on datetime,
+resolved BOOLEAN,
+resolved_on datetime,
+resolved_by_id INT NOT NULL);
+
+INSERT INTO ticket1(raisedby_employee_id,type_of_issue,raised_on,resolved,resolved_on,resolved_by_id) VALUES(1,'softwareissue',now(),TRUE,'2021-12-02',1001);
+
+INSERT INTO ticket1(raisedby_employee_id,type_of_issue,raised_on,resolved,resolved_on,resolved_by_id) VALUES(2,'hardwareissue',now(),TRUE,'2021-12-03',1002);
+
+INSERT INTO ticket1(raisedby_employee_id,type_of_issue,raised_on,resolved,resolved_on,resolved_by_id) VALUES(3,'Networkissue',now(),FALSE,NULL,1003);
+
+INSERT INTO ticket1(raisedby_employee_id,type_of_issue,raised_on,resolved,resolved_on,resolved_by_id) VALUES(4,'Cpuissue',now(),FALSE,NULL,1004);
+
+
+show create table login;
+
+ALTER TABLE login DROP FOREIGN KEY login_ibfk_1;
+
+ALTER TABLE login ADD FOREIGN KEY(employee_id) REFERENCES employee(employee_id) ON DELETE CASCADE ON UPDATE CASCADE;
+
+show create table ticket1;
+
+ALTER TABLE ticket1 DROP FOREIGN KEY ticket1_ibfk_1;
+
+ALTER TABLE ticket1 ADD FOREIGN KEY(raisedby_employee_id) REFERENCES employee(employee_id) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ SELECT * FROM ticket WHERE monthname(raised_on)='November';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
